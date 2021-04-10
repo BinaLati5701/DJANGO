@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos and Ninjas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 	
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-dark" style="text-align: center;">All the Dojos</h1>
+            <div>
+                {% for dojo in dojos %}
+                <ul>{{ dojo.name }}
+                    {% for ninja in dojo.ninjas.all %}
+                    <li>
+                        {{ninja.first_name}} {{ninja.last_name}} 
+                        
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}                    
+            </div>
+        <hr>
+        <div style="display: flex;">
+            <form  style="float:left;" action="/new_dojo" method="POST">
+                {% csrf_token %}
+                <div class="form-inline">
+                    <h3 class="text-dark" style="margin-bottom: 15px;">Add a Dojo</h3> 
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-mb2">
+                        <input type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="city" class="col-sm-2 col-form-label">City</label>
+                        <div class="col-sm-mb2">
+                        <input type="text" class="form-control" name="city">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="state" class="col-sm-2 col-form-label">State</label>
+                        <div class="col-sm-mb2">
+                        <input type="text" class="form-control" name="state">
+                        </div>
+                    </div>                
+                </div>            
+                <input class="btn btn-dark" type="submit" value="Add" style="font-weight: bold;margin-right: 500px;">
+            </form> 
+            <form style="float:right;" action="/new_ninja" method="POST">
+                {% csrf_token %}
+                <div class="form-inline">
+                    <h3 class="text-dark" style="margin-bottom: 15px;">Add a Ninja</h3> 
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-mb2">
+                        <input type="text" class="form-control" name="first_name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-mb2">
+                        <input type="text" class="form-control" name="last_name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="dojo" class="col-sm-3 col-form-label">Dojo</label>
+                        <div class="col-sm-mb3">
+                        <select class="form-control" name="dojo">
+                            <option>-select a dojo-</option>
+                            {% for dojo in dojos%}                        
+                            <option value="{{dojo.id}}">{{dojo.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- </div> -->
+                    </div>                
+                </div>            
+                <input class="btn btn-dark" type="submit" value="Add" style="font-weight: bold;margin-right: 500px;"> 
+            </form>
+        </div>     
+    </div>      
+</body>
+</html>

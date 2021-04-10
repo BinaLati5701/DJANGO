@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trip</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <a class="text-primary float-right mt-2 mr-2" href="logout">Logout</a>
+        <h2>Hello {{logged_in.first_name}}! Let's edit your trip!</h2>
+        <hr>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="text-danger {{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <form action="/update/{{this_trip.id}}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label>Destination:</label>
+                        <input type="text" name="edit_desc" value="{{this_trip.destination}}">
+                    </div>
+                    <div>
+                        <label>Start Date:</label>
+                        <input type="date" name="edit_sdate" value="{{this_trip.start_date}}">
+                    </div>
+                    <div>
+                        <label>End Date:</label>
+                        <input type="date" name="edit_edate" value="{{this_trip.end_date}}">
+                    </div> 
+                    <div>
+                        <label>Plan:</label>
+                        <textarea name="edit_plan"  cols="30" rows="3">{{this_trip.plan}}</textarea>
+                    </div>
+                    <input class="btn btn-warning" type="submit" value="Update!"> 
+
+                </form>
+                {% if logged_in.id == this_trip.created_by.id %}
+                
+                <button class="btn btn-danger" type="button"><a href="/delete/{{this_trip.id}}">Delete</a></button> 
+                {% endif %} 
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

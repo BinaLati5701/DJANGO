@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load static %}
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard">Human Resources</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Log Out</a>
+            </li>
+        </ul>       
+    </nav>
+    <div class="container-fluid">       
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar" style="height: 1000px;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-top: 50px;" href="/departments">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobs">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Job History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations">Locations</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/careers">Careers</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">     
+                <div class="form-group row">
+                    <div class="col">
+                        <img style="height: 600px; width:1200px ; margin-top: 70px;" src="{% static 'images/HR-plan.png' %}" alt="my_image" class="img-thumbnail">
+                    </div>
+                    <div class="wpb_wrapper">
+                        <p class="text-dark" style="margin-top: 80px; margin-right: 300px; margin-left: 20px;font-weight: bolder;">The HR cycle refers to the different stages employees go though during their employment time in a specific company 
+                            (Attraction, recruitment, onboarding, enablement, development, retention, and seperation).</p>
+                        <p class="text-dark" style="margin-right: 300px; margin-left: 20px; font-weight: bolder;">The HR department plays an impotant role in every stage of the HR cycle, and because all new hires go through the same stages,
+                            HR might as well create their department calendar based on the cycle. Thus, 
+                            a HR calendar fits perfectly in a circular calendar, as it visualizes the cyclical processes.</p>    
+                    </div>
+                </div>
+            </main>
+        </div>        
+    </div>
+</body>
+</html>

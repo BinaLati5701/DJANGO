@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Trip</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <a class="text-primary float-right mt-2 mr-2" href="logout">Logout</a>
+        <a class="text-primary float-right mt-2 mr-2" href="/dashboard">Dashboard</a>
+        <h2>Hello {{logged_in.first_name}}! Read about this trip!</h2>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h5>{{this_trip.destination}}</h5>                
+                <p>Start Date: {{this_trip.start_date}}</p>
+                <p>End Date: {{this_trip.end_date}}</p>
+                <p>Created On:  {{this_trip.created_at}}</p>
+                <p>Last Updated:  {{this_trip.updated_at}}</p>
+                <p>Plan: {{this_trip.plan}}</p>
+                <p>Created by: {{this_trip.created_by.first_name}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

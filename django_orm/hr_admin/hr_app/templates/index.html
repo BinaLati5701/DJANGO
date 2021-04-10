@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <h1 class="text-info mb-4" style="text-align: center;">Welcome To Human Resources</h1>
+    <div id="registration" class="container" style="background-color: rgb(170, 240, 240); height: 800px;">
+        {% for field in form %}
+            <p>{{ field.errors }}</p>
+        {% endfor %}
+        <div class="form-gorup row">
+            <div class="col-sm-2 mr-4">
+                <h2 class="text-danger">Register:</h2>
+                <form action="/register" method="post">
+                    {% csrf_token %}                    
+                    {{myregistrationform.as_p}}
+                    <input class="btn btn-danger" type="submit" value="Register">
+                </form>
+            </div> 
+            <div class="col-sm-2 ml-4">
+                <h2 class="text-danger">Login:</h2>
+                <form action="/login" method="post">
+                    {% csrf_token %}                    
+                    {{myloginform.as_p}}
+                    <input class="btn btn-danger" type="submit" value="Login">
+                </form>
+            </div>
+            <div class="col">
+                <img style="height: 700px;" src="{% static 'images/index.jpg' %}" alt="my_image" class="img-thumbnail">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

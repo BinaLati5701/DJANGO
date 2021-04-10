@@ -1,0 +1,43 @@
+#farm, #cave, #house, #casino{
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    background-color: rgb(156, 112, 156);
+    margin: 50px;
+}
+#cave h3{
+    text-align: center;
+    margin-left: 80px;
+}
+#cave p{
+    text-align: center;
+    margin-left: 80px;
+}
+#house h3{
+    text-align: center;
+    margin-left: 80px;
+}
+#house p{
+    text-align: center;
+    margin-left: 80px;
+}
+#casino h3{
+    text-align: center;
+    margin-left: 80px;
+}
+#casino p{
+    text-align: center;
+    margin-left: 50px;
+}
+
+h1{
+    margin-bottom: 35px;
+}
+
+h4{
+    margin-bottom: 30px;
+}
+p{
+    
+    padding: -10px;
+}

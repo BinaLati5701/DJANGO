@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job History</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/main">Human Resources</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Log Out</a>
+            </li>
+        </ul>       
+    </nav>
+    <div class="container-fluid">       
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar" style="height: 1000px;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-top: 50px;" href="/departments">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobs">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Job History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations">Locations</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/careers">Careers</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1 class="text-info" style="margin-top: 50px;margin-bottom: 60px; text-align: center;">JOB HISTORY</h1>     
+                <div style="margin-left: 200px;">
+                    {% for jh in job_histories %}
+                    <h5 class="text-danger"> {{jh.employee.users.first_name}} {{jh.employee.users.last_name}}</h5>
+                    <p>Title: {{jh.employee.job.job_title}}</p>
+                    <p>Department: {{jh.employee.dept_work.department_name}}</p>
+                    <p> Start of Employment: {{jh.start_date}}</p>
+                    <p>End of Employement: {{jh.end_date}}</p>
+                    {% endfor %}
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

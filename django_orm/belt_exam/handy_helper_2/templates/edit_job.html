@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="container">
+        <a class="text-primary float-right mt-2 mr-2" href="logout">Logout</a>
+        <h2>Hello {{user.first_name}}! Let's edit your job!</h2>
+        <hr>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="text-danger{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <h2>Everyone's jobs:</h2>
+                <form action="/jobs/edit/{{this_job.id}}" method="post">
+                    {% csrf_token%}
+                    <div>
+                        <label>Title:</label>
+                        <input type="text" name="title" value="{{this_job.title}}">
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                        <input type="text" name="desc" value="{{this_job.desc}}">
+                    </div>
+                    <div>
+                        <label>Location:</label>
+                        <input type="text" name="loc" value="{{this_job.location}}">
+                    </div>
+                    <a href="/dashboard">
+                        <input class="btn btn-info mr -2" type="submit" value="Cancel">
+                    </a>             
+                    <input class="btn btn-info ml-2" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

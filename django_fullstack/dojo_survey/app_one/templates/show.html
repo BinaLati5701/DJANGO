@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Show Page</h1>
+                <h3>Info Submitted:</h3>
+                <p>First Name: {{fname}}</p>
+                <p>Last Name: {{lname}}</p>
+                <p>Dojo Location: {{location}}</p>
+                <p>Favorite Language: {{language}}</p>
+                <p>Gender: {{inlineRadioOptions}}</p>
+                <p>Comment: {{text}}</p>
+                <p>Checkbox: {{checkbox}}</p>
+            </div>            
+        </div>     
+    </div>    
+</body>
+</html>

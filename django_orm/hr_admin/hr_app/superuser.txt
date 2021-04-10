@@ -1,0 +1,13 @@
+
+Admin:
+username = admin
+email = admin@admin1.com
+password = SkyBlue1!
+
+Manager:
+email= manager@manager.com
+password = bc12sd58!
+
+Users:
+email = 
+password=123456789

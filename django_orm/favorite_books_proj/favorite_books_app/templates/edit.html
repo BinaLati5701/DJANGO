@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-info">Welcome, {{logged_in.first_name}}!</h2>
+        <a class="text-primary float-right mt-2" href="logout">Log Out</a>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h2>{{book.title}}</h2>
+                <p>Added By: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</p>
+                <p>Added on: {{book.created_at}}</p>
+                <p>Last updated on: {{book.updated_at}}</p>
+                <div class="form-group">
+                    <label>Description:</label>
+                    {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="text-danger{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <input type="text" name="edit_desc" value="this_book.description">
+                </div>
+                <input class="btn btn-warning float-left mr-10 mt-2" type="submit" value="Update">
+                <input class="btn btn-danger float-left mt-2" type="submit" value="Delete">
+            </div>
+            <div class="col">
+                <h2>Users Who Like This Book:</h2>
+                <ul>
+                    {% for user in users %}
+                    <li>{{user.first_name}} {{user.last_name}} <a href="/unfavorite/{{book.id}}">Unfavorite</a></li>
+                    {% endfor %}
+                </ul>
+                <a href="/favorite/{{book.id}}">Favorite</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/main">Human Resources</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Log Out</a>
+            </li>
+        </ul>       
+    </nav>
+    <div class="container-fluid">       
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar" style="height: 1000px;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-top: 50px;" href="/departments">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobs">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Job History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations">Locations</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/careers">Careers</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1 class="text-info" style="margin-top: 50px; text-align: center;">DEPARTMENTS</h1>
+                <ul style="border-style: double; align-items: center; margin-right: 400px; margin-top: 60px;margin-left: 400px;" >
+                    {% for department in departments%}
+                    <li class="text-primary" style="font-weight: bold;">{{department.department_name}}</li>
+                        <p class="text-warning">
+                            {{department.location.street_address}}
+                            {{department.location.city}}
+                            {{department.location.state}}
+                            {{department.location.postal_code}}
+                        </p>
+                    
+                    {% endfor %}
+                </ul> 
+            </main>
+        </div>
+    </div>    
+</body>
+</html>

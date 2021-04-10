@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information</title>
+    <title>Employees</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/main">Human Resources</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Log Out</a>
+            </li>
+        </ul>       
+    </nav>
+    <div class="container-fluid">       
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar" style="height: 1000px;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-top: 50px;" href="/departments">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobs">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Job History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations">Locations</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/careers">Careers</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1 class="text-info" style="margin-top: 50px; text-align: center;">PROFILE</h1>
+                <div style="margin-bottom: 70px;"></div>
+                <div class="form-group row">
+                    <div class="col">
+                        <img src="{% static 'images/human-resources.jpg' %}" alt="my_image" class="img-thumbnail">
+                        <label class="text-dark" style="font-weight: bold;">Change Profile Photo</label>
+                        <input type="file" class="form-control-file" id="profile_pic">
+                    </div>
+                    <div class="col">
+                        <h2 class="text-dark" style="margin-bottom: 30px;">{{this_employee.users.first_name}} {{this_employee.users.last_name}}</h2>
+                        <h5 class="text-info">Job Title: {{this_employee.job.job_title}}</h5>
+                        <h5 class="text-info" style="margin-bottom: 20px;">Department: {{this_employee.dept_work.department_name}}</h5>
+                        <p style="text-align: justify; margin-right: 400px; ">I'm a nice fun and friendly person, I'm honest and punctual, 
+                            I work well in a team but also on my own as I like to set myself goals which 
+                            I will achieve, I have good listening and communication skills. 
+                            I have a creative mind and am always up for new challenges.</p>           
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

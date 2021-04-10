@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <a class="text-primary float-right mt-2 ml-2" href="logout">Logout</a> 
+        <a href="/new">
+            <input class="btn btn-info float-right mt-2" type="submit" value="Create a new trip!">
+        </a>        
+
+        <h2>Hello {{logged_in.first_name}}!</h2>
+        <hr>
+
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="text-danger{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <h2>Your Trips:</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Plan</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for trip in trips %}
+                        <tr>
+                            <td><a href="/view/{{trip.id}}">{{trip.destination}}</a></td>
+                            <td>{{trip.start_date}}</td> 
+                            <td>{{trip.end_date}}</td> 
+                            <td>{{trip.plan}}</td>
+                            {% if logged_in.id == trip.created_by.id %} 
+                            <td>
+                                <a href="/delete/{{trip.id}}">Remove |</a>
+                                <a href="/edit/{{trip.id}}">Edit</a>
+                            </td> 
+                            {% endif %}                        
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

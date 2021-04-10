@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Show</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Show</h1>
+        <form action="/shows/{{id}}" method="post">
+            <div>
+                <label>Title</label>
+                <input type="text" name="title">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Network</label>
+                    <input type="text" class="form-control" name="network">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Release Date</label>
+                    <input type="date" class="form-control" name="rel_date">
+                </div>
+            </div> 
+            <div>
+                <label>Description</label>
+                <textarea name="desc"></textarea>
+            </div>   
+        </form>
+        <button class="btn btn-light" type="button">Create</button> 
+    </div>
+</body>
+</html>

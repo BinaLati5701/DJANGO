@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DojoSurvey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
+</head>
+<body>
+    <h1 class="text-info">Dojo Survey</h1>
+        <form action="/result" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="name" class="form-control" id="first_name" aria-describedby="first_name" placeholder="Enter First Name" name="fname">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="name" class="form-control" id="last_name" placeholder="Enter Last Name" name="lname">
+            </div>
+            <div class="form-group">
+                <label for="inputLocation">Dojo Location:</label>
+                <select class="form-control" name="location">
+                    <option selected>Choose Location</option>
+                    <option value="New York">New York</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Other City">Other City</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputLanguage">Favorite Language:</label>
+                <select class="form-control" name="language">
+                    <option selected>Choose Language</option>
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Java">Java</option>
+                    <option value="C#">C#</option>
+                </select>
+            </div>           
+            <p>Select Gender:</p>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
+            <div class="form-group">
+                <label for="textarea">Comment (optional)</label>
+                <textarea class="form-control" id="text-area" rows="3" name = "text"></textarea>
+            </div>
+            <div class="form-group form-check-inline">
+                <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox">
+                <label class="form-check-label" for="checkbox1">Share my info</label>
+            </div>
+            <div class="form-group form-check-inline">
+                <input type="checkbox" class="form-check-input" id="checkbox2" name="checkbox">
+                <label class="form-check-label" for="checkbox2">Do not share my info </label>
+            </div>             
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>            
+        </form>    
+</body>
+</html>

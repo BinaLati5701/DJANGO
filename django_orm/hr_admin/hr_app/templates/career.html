@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers</title>
+    {% load static %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#form').accordion();
+
+        });
+    </script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/main">Human Resources</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Log Out</a>
+            </li>
+        </ul>       
+    </nav>
+    <div class="container-fluid">       
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar" style="height: 1000px;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-top: 50px;" href="/departments">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jobs">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Job History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/locations">Locations</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/careers">Careers</a>
+                        </li>                       
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1 class="text-info" style="margin-top: 50px; margin-bottom: 60px; text-align: center;">CAREERS</h1>     
+                <div id="form" class="form-group row" style="margin-left: 100px;">
+                    <div class="col-sm-4 mr-6">
+                        <h2 class="text-danger" style="font-weight: bold;margin-bottom: 20px;">Apply for a Job:</h2>
+                        <form action="apply_for_job" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Choose Job:</label>
+                                <select style="margin-left:4px" name="select_job">
+                                    <option>select job</option>
+                                    {% for job in jobs %}
+                                    <option value="{{job.id}}">{{job.job_title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div class="form-group">
+                            <div>
+                                <label>First Name:</label>
+                                <input style="margin-left:10px; margin-bottom:20px;" type="text" name="fname">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name:</label>
+                                <input style="margin-left:10px;" type="text" name="lname">
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input style="margin-left:45px;" type="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone:</label>
+                                <input style="margin-left: 38px;" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                            </div>
+                            <div class="form-group">
+                                <label>Time to Call:</label>
+                                <select name="time_to_call">
+                                    <option>available time</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Anytime">Anytime</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Resume:</label>
+                                <input type="file" class="form-control-file text-primary" id="choose_resume">
+                            </div>
+                            <div class="form-group">
+                                <label>Or Paste Your Resume here:</label>
+                                <textarea name="resume" id="resume" cols="50" rows="20"></textarea>
+                            </div>                         
+                            <input class="btn btn-danger" type="submit" value="Apply !">
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="container">
+        <a class="text-primary float-right mt-2 ml-2" href="logout">Logout</a>
+        <a class="text-primary float-right mt-2 mr-2" href="/dashboard">Dashboard</a>
+        
+        <h2>Hello {{user.first_name}}! These are the job details!</h2>
+        <hr>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="text-danger{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <h5>{{this_job.title}}</h5>
+                <form action="/jobs/{{job.id}}" method="post">
+                    {% csrf_token%}
+                    <p>{{this_job.desc}}</p>
+                    <p>Location: {{this_job.location}}</p>
+                    <p>Posted By:  {{this_job.worker.first_name}}</p>
+                    <p>Posted on:  {{this_job.created_at}}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
